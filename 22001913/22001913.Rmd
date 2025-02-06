@@ -1,0 +1,171 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.16.6
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r}
+print("22001913")
+```
+
+```{r}
+print("Activity 1")
+```
+
+```{r}
+weights <- c(14,22,33,45,56,23,12,56,45,34,23,11,17,3,5,23,34,38,54,6,7,24,48,46)
+```
+
+```{r}
+hist(weights,breaks = seq(0, 70, by = 5),col = "yellow",main = "Distribution of Parcel Weights",xlab = "Weight (kg)",ylim = c(0, 10),xlim = c(0, 70))
+```
+
+```{r}
+print("Activity 2")
+```
+
+```{r}
+movie_types <- c("Comedy", "Action", "Romance", "Drama", "SiFi")
+```
+
+```{r}
+likes <- c(40, 50, 60, 10, 30)
+```
+
+```{r}
+pie(likes,labels = paste(round(100 * likes/sum(likes), 1), "%"),col = rainbow(length(movie_types)),main = "Favorite type of Movie")
+```
+
+```{r}
+barplot(likes,names.arg = movie_types,col = "red",border = "yellow",main = "Favourite type of Movie",xlab = "Movie Type",ylab = "No of Likes")
+```
+
+```{r}
+print("Activity 3")
+```
+
+```{r}
+data("islands")
+```
+
+```{r}
+mydata <- islands
+```
+
+```{r}
+stem(mydata)
+```
+
+```{r}
+print("Activity 3")
+```
+
+```{r}
+heart_data <- read.csv("heart.csv")
+```
+
+```{r}
+head(heart_data)
+```
+
+```{r}
+boxplot(MaxHR ~ Sex, 
+        data = heart_data,
+        col = c("purple", "yellow"),
+        xlab = "Sex",
+        ylab = "Maximum Heart Rate",
+        main = "Heart Rates",
+        outline = TRUE)
+```
+
+```{r}
+by(heart_data$MaxHR, heart_data$Sex, summary)
+```
+
+```{r}
+by(heart_data$MaxHR, heart_data$Sex, function(x) {
+    c(skewness = (mean(x) - median(x))/sd(x))
+})
+```
+
+```{r}
+print("Activity 4")
+```
+
+```{r}
+chess_data <- read.csv("games.csv")
+```
+
+```{r}
+head(chess_data,2)
+```
+
+```{r}
+boxplot(turns ~ winner, 
+        data = chess_data,
+        col = c("green", "blue", "red"),
+        xlab = "Winner of the game",
+        ylab = "No of turns",
+        main = "Chess game summary")
+```
+
+```{r}
+data(mtcars)
+mydata1 <- mtcars$mpg
+```
+
+```{r}
+boxplot(mydata1,
+        main = "Boxplot of Random Dataset",
+        ylab = "Values")
+```
+
+```{r}
+summary_stats <- summary(mydata1)
+print("Five Number Summary:")
+print(summary_stats)
+```
+
+```{r}
+range <- max(mydata1) - min(mydata1)
+print(paste("Range:", range))
+```
+
+```{r}
+skewness <- (mean(mydata1) - median(mydata1))/sd(mydata1)
+print(paste("Skewness:", skewness))
+```
+
+```{r}
+Q1 <- quantile(mydata1, 0.25)
+Q3 <- quantile(mydata1, 0.75)
+IQR <- Q3 - Q1
+outliers <- mydata1[mydata1 < (Q1 - 1.5*IQR) | mydata1 > (Q3 + 1.5*IQR)]
+if(length(outliers) > 0) {
+    print("Outliers present:")
+    print(outliers)
+} else {
+    print("No outliers found")
+}
+```
+
+```{r}
+print("Activity 5")
+```
+
+```{r}
+data(USArrests)
+```
+
+```{r}
+plot(USArrests$Murder, USArrests$Assault,xlim = c(0, 14),ylim = c(150, 300),xlab = "Murders",ylab = "Assaults",main = "USA arrest rates",pch = 16,col="blue")
+grid()
+```
